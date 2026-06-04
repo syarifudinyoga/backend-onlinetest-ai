@@ -13,8 +13,8 @@ func Register(req RegisterRequest) error {
 
 	_, err := config.DB.Exec(
 		context.Background(),
-		`INSERT INTO users (name, email, password) VALUES ($1,$2,$3)`,
-		req.Name, req.Email, hashed,
+		`INSERT INTO users (name, email, password, role) VALUES ($1,$2,$3, $4)`,
+		req.Name, req.Email, hashed, req.Role,
 	)
 
 	return err
