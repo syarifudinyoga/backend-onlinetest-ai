@@ -10,9 +10,9 @@ func GetUserByEmail(email string) (models.User, error) {
 	var user models.User
 
 	err := config.DB.QueryRow(context.Background(),
-		`SELECT id, name, email, password FROM users WHERE email=$1`,
+		`SELECT id, name, email, password, role FROM users WHERE email=$1`,
 		email,
-	).Scan(&user.ID, &user.Name, &user.Email, &user.Password)
+	).Scan(&user.ID, &user.Name, &user.Email, &user.Password, &user.Role)
 
 	return user, err
 }

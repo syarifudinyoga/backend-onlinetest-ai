@@ -30,5 +30,10 @@ func Login(req LoginRequest, secret string) (string, error) {
 		return "", errors.New("wrong password")
 	}
 
-	return pkgjwt.GenerateToken(user.ID, "participant", secret)
+	// return pkgjwt.GenerateToken(user.ID, "participant", secret)
+	return pkgjwt.GenerateToken(
+		user.ID,
+		user.Role,
+		secret,
+	)
 }
